@@ -1,1 +1,1 @@
-# Fundamnetals_SoSy
+# Fundamentals_SoSy
