@@ -24,8 +24,8 @@ class StorageHandler:
         serialized = self.serializer.serialize(file_str)
         file_name_stored = file_name + self.serializer.file_ending
 
-        self.storer.store(file_name_stored, serialized)
-        self._add_content(file_name, file_name_stored)
+        hash = self.storer.store(file_name_stored, serialized)
+        self._add_content(file_name, hash)
 
 
     def _add_content(self,file_name: str, stored_name: str):
@@ -45,11 +45,11 @@ class StorageHandler:
         serialized = self.storer.retrieve(stored_name)
         file_content = self.serializer.deserialize(serialized)
         
-        with open(file_name, "w+") as f:
+        with open(stored_name, "w+") as f:
             f.write(file_content)
 
-        self.storer.remove(stored_name)
-        self._remove_content(file_name)
+        #self.storer.remove(stored_name)
+        #self._remove_content(file_name)
 
 
     def _get_content(self,file_name: str) -> str:

@@ -4,6 +4,7 @@ import argparse
 from src.storageHandler import StorageHandler
 from src.storage_methods import FileStorage
 from src.serializers import PickleSerializer
+from src.storage_methods import IPFSStorage
 
 def setup_parser():
     parser = argparse.ArgumentParser(description="Serialize and store files or deserialize and retrieve files")
@@ -15,7 +16,7 @@ def setup_parser():
 
 def build_storage(id: str):
     if id=="file":
-        return FileStorage()
+        return IPFSStorage()
     else:
         raise ValueError("{id} is an invalid storage method")
 
