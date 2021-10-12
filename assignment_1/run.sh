@@ -10,7 +10,7 @@ fi
 
 counter=10 
 while [ "$counter" -gt 0 ]; do
-    python main.py -s pickle -m store test.txt #this is a test call
+    python main.py -s pickle -m store test_files/1mb.txt #this is a test call
     counter=$(( counter - 1 ))
     #python .test/plot.py
 done

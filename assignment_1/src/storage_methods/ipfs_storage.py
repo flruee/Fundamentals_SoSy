@@ -10,34 +10,20 @@ class IPFSStorage():
     def __init__(self, ip: str="127.0.0.1", port: int=5001):
         self.ip = ip
         self.port = port
-        #self.client = ipfsApi.Client()
-        self.client = ipfshttpclient.Client()
+        #self.client = ipfshttpclient.Client()
+        self.client = ipfshttpclient.connect()
+        print(self.client.id())
 
     def store(self, filename,content):
-        print(filename)
-        print(content)
-        #multihash = self.client.add_bytes(content)
-        multihash = self.client.block.put(io.BytesIO(content))
-        
-        return multihash["Key"]
+        #multihash = self.client.block.put(io.BytesIO(content))
+        multihash = self.client.add(io.BytesIO(content))
 
-    def retrieve(self,multihash):
-        """
-        hash = multihash["Hash"]
-
-        print(r.text)
-        print(type(r.text))
-        for i in r.text:
-            print(i,end="")
-        content = r.text
-        #print(content)
-        self.client = ipfsApi.Client(self.ip,self.port)
-        """
         print(multihash)
-        x = self.client.block.get(multihash)
-        print(x)
-        return x
-
+        #return multihash["Key"]
+        return multihash["Hash"]
+    def retrieve(self,multihash):
+        #return self.client.block.get(multihash)
+        return self.client.get(multihash)
     def remove(self,filename):
         return
 
@@ -49,4 +35,3 @@ if __name__ == "__main__":
     ipfs_storage.retrieve(hash)
     #client = ipfsApi.Client("127.0.0.1", 5001)
     #res = client.add("test.txt")
-    #print(res)

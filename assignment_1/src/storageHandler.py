@@ -18,7 +18,7 @@ class StorageHandler:
 
     def store(self, file_path):
         file_name=file_path.split("/")[-1]
-        with open(file_path, "r") as f:
+        with open(file_path, "rb") as f:
             file_str = f.read()
 
         serialized = self.serializer.serialize(file_str)
@@ -42,10 +42,12 @@ class StorageHandler:
         stored_name = self._get_content(file_name)
 
 
-        serialized = self.storer.retrieve(stored_name)
-        file_content = self.serializer.deserialize(serialized)
+        self.storer.retrieve(stored_name)
+        with open(stored_name,"rb") as f:
+            serialized = f.read()
         
-        with open(stored_name, "w+") as f:
+        file_content = self.serializer.deserialize(serialized)
+        with open(stored_name, "wb+") as f:
             f.write(file_content)
 
         #self.storer.remove(stored_name)
