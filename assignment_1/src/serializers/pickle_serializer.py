@@ -8,5 +8,6 @@ class PickleSerializer(Serializer):
     def serialize(self, content: str):
         serialized = pickle.dumps(content)
         return serialized
+
     def deserialize(self, serialized_content):
         return pickle.loads(serialized_content)
