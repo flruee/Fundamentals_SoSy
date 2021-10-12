@@ -13,7 +13,7 @@ def setup_parser():
     parser.add_argument("-m",type=str, required=True, choices=["store", "retrieve"], help="if you want to store the file")
     return parser
 
-def build_storage(id: str):
+def build_storage():
     return IPFSStorage()
 
 def build_serializer(id: str):
@@ -27,15 +27,15 @@ if __name__ == "__main__":
     args = parser.parse_args(sys.argv[1:])
     
     file = args.filepath
-    file_storer = build_storage(args.st)
-    serializer = build_serializer(args.se)
+    file_storer = build_storage()
+    serializer = build_serializer(args.s)
     sh = StorageHandler(file_storer,serializer)
 
     if args.m == "store":
-        print(f"storing {file} in {args.st} with serializer {args.se}")
+        print(f"storing {file} with serializer {args.s}")
         sh.store(file)
     elif args.m == "retrieve":
-        print(f"retrieving {file} from {args.st} with deserializer {args.se}")
+        print(f"retrieving {file} with with deserializer {args.s}")
         sh.retrieve(file)
     else:
         raise ValueError(f"{args.m} is invalid")
