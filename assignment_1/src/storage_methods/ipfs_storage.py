@@ -12,13 +12,11 @@ class IPFSStorage():
         self.port = port
         self.client = ipfshttpclient.Client()
         #self.client = ipfshttpclient.connect()
-        print(self.client.id())
 
     def store(self, filename,content):
         #multihash = self.client.block.put(io.BytesIO(content))
         multihash = self.client.add(io.BytesIO(content))
 
-        print(multihash)
         #return multihash["Key"]
         return multihash["Hash"]
     def retrieve(self,multihash):

@@ -3,6 +3,7 @@ import pickle
 import json
 from src.serializers.serializer_abstract import Serializer
 from src.storage_methods import Storage
+from src.timer_methods.timer import ipfs_timer
 
 class StorageHandler:
     def __init__(self, storer: Storage, serializer: Serializer, path_to_content="content.json"):
@@ -16,6 +17,7 @@ class StorageHandler:
         self.storer = storer
         self.serializer = serializer
 
+    @ipfs_timer
     def store(self, file_path):
         file_name=file_path.split("/")[-1]
         with open(file_path, "rb") as f:
@@ -37,7 +39,7 @@ class StorageHandler:
         with open(self.path_to_content, "w") as f:
             f.write(json.dumps(content, indent=4,))
 
-
+    @ipfs_timer
     def retrieve(self, file_name: str):
         stored_name = self._get_content(file_name)
 
