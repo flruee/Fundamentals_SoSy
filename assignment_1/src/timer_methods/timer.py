@@ -1,27 +1,38 @@
 import time
 import os
 
+def execute_func_timer(timer_path, func, *args, **kwargs):
+    start = time.time()
+    result = func(*args, **kwargs)
+    end = time.time()
+    with open(timer_path, "a") as f:
+        f.write(str(start)+";"+str(end)+"\n")
+    return result
 
-def timer(func):
+def ipfs_timer(func):
     def wrap(*args, **kwargs):
-        print(*args)
+        #print(*args)
         timer_path = "results/"+func.__name__+".txt"
-
-        MYDIR = ("results")
-        CHECK_FOLDER = os.path.isdir(MYDIR)
-
+        folder = ("results")
+        CHECK_FOLDER = os.path.isdir(folder)
         # If folder doesn't exist, then create it.
         if not CHECK_FOLDER:
-            os.makedirs(MYDIR)
-            
-        start = time.time()
-        result = func(*args, **kwargs)
-        end = time.time()
-        with open(timer_path, "a") as f:
-            f.write(str(start)+";"+str(end)+"\n")
-        return result
-
+            os.makedirs(folder)
+        return execute_func_timer(timer_path, func, *args, **kwargs)   
     return wrap
+
+def http_timer(func):
+    def wrap(*args, **kwargs):
+        #print(*args)
+        timer_path = "results/http/"+func.__name__+"_"+args[0]+".txt"
+        folders_in_path = ["results", "results/http"]
+        for folder in folders_in_path:
+            CHECK_FOLDER = os.path.isdir(folder)
+            # If folder doesn't exist, then create it.
+            if not CHECK_FOLDER:
+                os.makedirs(folder)       
+        return execute_func_timer(timer_path, func, *args, **kwargs)   
+    return wrap   
 
 #Example...
 #@timer
