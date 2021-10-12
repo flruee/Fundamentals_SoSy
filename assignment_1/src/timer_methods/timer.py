@@ -6,12 +6,11 @@ def execute_func_timer(timer_path, func, *args, **kwargs):
     result = func(*args, **kwargs)
     end = time.time()
     with open(timer_path, "a") as f:
-        f.write(str(start)+";"+str(end)+"\n")
+        f.write(f"{start}; {end}; {end-start}\n")
     return result
 
 def ipfs_timer(func):
     def wrap(*args, **kwargs):
-        #print(*args)
         timer_path = "results/"+func.__name__+".txt"
         folder = ("results")
         CHECK_FOLDER = os.path.isdir(folder)
@@ -23,8 +22,7 @@ def ipfs_timer(func):
 
 def http_timer(func):
     def wrap(*args, **kwargs):
-        #print(*args)
-        timer_path = "results/http/"+func.__name__+"_"+args[0]+".txt"
+        timer_path = "results/http/"+func.__name__+"_"".txt"
         folders_in_path = ["results", "results/http"]
         for folder in folders_in_path:
             CHECK_FOLDER = os.path.isdir(folder)
