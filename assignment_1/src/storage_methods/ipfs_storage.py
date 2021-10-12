@@ -10,8 +10,8 @@ class IPFSStorage():
     def __init__(self, ip: str="127.0.0.1", port: int=5001):
         self.ip = ip
         self.port = port
-        #self.client = ipfshttpclient.Client()
-        self.client = ipfshttpclient.connect()
+        self.client = ipfshttpclient.Client()
+        #self.client = ipfshttpclient.connect()
         print(self.client.id())
 
     def store(self, filename,content):
