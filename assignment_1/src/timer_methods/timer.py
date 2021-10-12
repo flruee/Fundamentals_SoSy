@@ -1,7 +1,10 @@
+import time
+import os
+
 
 def timer(func):
     def wrap(*args, **kwargs):
-
+        print(*args)
         timer_path = "results/"+func.__name__+".txt"
 
         MYDIR = ("results")
