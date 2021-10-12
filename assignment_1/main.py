@@ -9,16 +9,12 @@ from src.storage_methods import IPFSStorage
 def setup_parser():
     parser = argparse.ArgumentParser(description="Serialize and store files or deserialize and retrieve files")
     parser.add_argument("filepath", help="filepath for the file you want to process")
-    parser.add_argument("-st", type=str, required=True, choices=["file"], help="Storage method. Valid values are: file")
-    parser.add_argument("-se", type=str, required=True,choices=["pickle"], help="Serializer method. Valid values are: pickle")
+    parser.add_argument("-s", type=str, required=True,choices=["pickle"], help="Serializer method. Valid values are: pickle")
     parser.add_argument("-m",type=str, required=True, choices=["store", "retrieve"], help="if you want to store the file")
     return parser
 
 def build_storage(id: str):
-    if id=="file":
-        return IPFSStorage()
-    else:
-        raise ValueError("{id} is an invalid storage method")
+    return IPFSStorage()
 
 def build_serializer(id: str):
     if id=="pickle":
@@ -27,7 +23,6 @@ def build_serializer(id: str):
         raise ValueError("{id} is an invalid serializer method")
 
 if __name__ == "__main__":
-
     parser = setup_parser()
     args = parser.parse_args(sys.argv[1:])
     

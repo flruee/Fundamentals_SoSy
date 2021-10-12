@@ -13,8 +13,8 @@ Call main.py via terminal and add arguments:
 * filePath: path to a file
 
 Example:  
-`python main.py -st file -se pickle -m store test.txt`, for pickling a file and storing it in a folder.  
-`python main.py -st file -se pickle -m retrieve test.txt`, for retrieving above file and storing it in your current directory.
+`python main.py -s pickle -m store test.txt`, for pickling a file and storing it in a folder.  
+`python main.py -s pickle -m retrieve test.txt`, for retrieving above file and storing it in your current directory.
 
 ## Structure
 * src/serializers/: Contains serializer classes, implemented as defined in serializer_abstract.py
