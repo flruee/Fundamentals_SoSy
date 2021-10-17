@@ -19,15 +19,11 @@ class StorageHandler:
 
     @ipfs_timer
     def store(self, file_path):
-        file_name=file_path.split("/")[-1]
-        with open(file_path, "rb") as f:
-            file_str = f.read()
 
-        serialized = self.serializer.serialize(file_str)
-        file_name_stored = file_name + self.serializer.file_ending
+        serialized = self.serializer.serialize(file_path)
 
-        hash = self.storer.store(file_name_stored, serialized)
-        self._add_content(file_name, hash)
+        hash = self.storer.store(file_path, serialized)
+        self._add_content(file_path, hash)
         print(hash)
 
     def _add_content(self,file_name: str, stored_name: str):
