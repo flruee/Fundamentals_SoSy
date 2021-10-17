@@ -1,14 +1,17 @@
 # FSS Assignment 1
+### Members
 
+  
+Ben Murphy  
+Florian Rüegsegger - 14-714-737  
 ## Setup
-* Create venv via `pyton -m venv FSS_env`
+* Create venv via `python -m venv FSS_env`
 * activate venv via `source FSS_env/bin/activate` (linux)
 * install requirements via pip `pip install -r requirements.txt`
 
 ## Usage
 Call main.py via terminal and add arguments:
-* -st: Storage Method, choices=[file]
-* -se: Serializer, choices=[pickle]
+* -s: Serializer, choices=[pickle]
 * -m: Method, choices=[store, retrieve]
 * filePath: path to a file
 
