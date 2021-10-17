@@ -3,14 +3,14 @@ import sys
 import argparse
 from src.storageHandler import StorageHandler
 from src.storage_methods import FileStorage
-from src.serializers import PickleSerializer
+from src.serializers import PickleSerializer, CSVSerializer
 from src.storage_methods import IPFSStorage
 from src.http_functions import http_runs
 
 def setup_parser():
     parser = argparse.ArgumentParser(description="Serialize and store files or deserialize and retrieve files")
     parser.add_argument("--filepath", required=False, help="filepath for the file you want to process")
-    parser.add_argument("-s", type=str, required=False, choices=["pickle"], help="Serializer method. Valid values are: pickle")
+    parser.add_argument("-s", type=str, required=False, choices=["pickle", "csv"], help="Serializer method. Valid values are: pickle")
     parser.add_argument("-m",type=str, required=False, choices=["store", "retrieve", "http"], help="if you want to store the file")
     return parser
 
@@ -20,10 +20,13 @@ def build_storage():
 def build_serializer(id: str):
     if id=="pickle":
         return PickleSerializer()
+    elif id=="csv":
+        return CSVSerializer()
     else:
         raise ValueError("{id} is an invalid serializer method")
 
 if __name__ == "__main__":
+    print("q")
     parser = setup_parser()
     args = parser.parse_args(sys.argv[1:])
     

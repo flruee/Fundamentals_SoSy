@@ -5,17 +5,17 @@ import matplotlib.pyplot as plt
 if __name__ == "__main__":
 
     try:
-        txt_files = glob.glob("results/http/*.txt")
+        txt_files = glob.glob("results/ipfs/*.txt")
         found_files = 0
         
         for txt in txt_files:          
             datas = pd.read_csv(txt, delimiter=';', header=None)
-            elapsed_time = datas.loc[:, 0] - datas.loc[:, 1]
+            elapsed_time = datas.loc[:, 1] - datas.loc[:, 0]
             plot_title = txt.replace("results/","").replace("/", "_").replace(".txt", "")
             #plot_title = txt.removesuffix(".txt")
             #plot_title = plot_title.removeprefix("results/*")
             #plot_title = plot_title.capitalize()
-
+            print(elapsed_time)
             plt.figure(figsize=(8, 3))
             plt.title(plot_title)
             plt.plot(elapsed_time)

@@ -28,7 +28,7 @@ class StorageHandler:
 
         hash = self.storer.store(file_name_stored, serialized)
         self._add_content(file_name, hash)
-
+        print(hash)
 
     def _add_content(self,file_name: str, stored_name: str):
         with open(self.path_to_content,"r") as f:
