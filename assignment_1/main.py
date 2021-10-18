@@ -26,7 +26,6 @@ def build_serializer(id: str):
         raise ValueError("{id} is an invalid serializer method")
 
 if __name__ == "__main__":
-    print("q")
     parser = setup_parser()
     args = parser.parse_args(sys.argv[1:])
     
