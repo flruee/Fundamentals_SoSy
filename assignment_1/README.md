@@ -1,7 +1,7 @@
 # FSS Assignment 1
 ### Members
 Psarra Foteini  
-Ben Murphy  
+Ben Murphy - 16-714-925
 Florian Rüegsegger - 14-714-737  
 ## Setup
 * Create venv via `python -m venv FSS_env`
