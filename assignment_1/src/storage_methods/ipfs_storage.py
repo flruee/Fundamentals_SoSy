@@ -1,8 +1,6 @@
 from ipfshttpclient.client import connect
-from .abstract_storage import Storage
 import io
 import ipfshttpclient
-import requests
 #from storage_methods.abstract_storage import Storage
 
 

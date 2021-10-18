@@ -1,7 +1,6 @@
 # FSS Assignment 1
 ### Members
-
-  
+Psarra Foteini  
 Ben Murphy  
 Florian Rüegsegger - 14-714-737  
 ## Setup
